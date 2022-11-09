@@ -1,0 +1,51 @@
+#include<iostream>
+#include<stack>
+#include<cstring>
+
+using namespace std;
+
+void reverse(char *c, int n){
+	stack<char> s;
+	
+	for(int i = 0; i < n; i++){
+		s.push(c[i]);
+	}
+	
+	for(int i = 0; i < n; i++){
+		c[i]= s.top();
+		s.pop();
+	}
+}
+bool checkForPalindrome(char* c, char* originalString, int n){
+	for(int i = 0; i <= n; i++){
+		if(c[i] == originalString[i]){
+			continue;
+		}else{
+			return false;
+		}
+		
+		return true;
+	}
+}
+int main(){
+	
+	char c[50];
+	
+	cout<<"Enter a string: ";
+	gets(c);
+	
+	char originalString[50];
+	for(int i = 0; i <= strlen(c); i++){		//Copies the original string before being altered
+		originalString[i] = c[i];
+	}
+	
+	reverse(c, strlen(c));
+	
+	cout<<"\nOutput = "<<c;	 
+	
+	if(checkForPalindrome(c, originalString, strlen(c))){
+		cout<<"\n\nThe string is a palindrome.";
+	}else{
+		cout<<"\n\nThe string is not a palindrome.";
+	}
+}
